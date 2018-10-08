@@ -1,0 +1,62 @@
+<div class="main-container">
+  <table>
+    <thead>
+    <tr>
+      <div class="col-time col-head">
+        Calender View
+      </div>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <div class="col-time" [ngClass]="{'col-time-selected': map.get(i).length }" *ngFor="let i of getKeys(map)">
+        {{i}}:00 <span class="selected-text">{{ map.get(i).toString() }}</span>
+      </div>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn-submit" (click)="showDialogBox()">Add</button>
+
+</div>
+
+<div id="id01" class="modal" #id01>
+
+  <form class="modal-content animate" [formGroup]="fg" *ngIf="fg" >
+    <div class="container">
+      <div>
+        <h1>
+          Add Details
+        </h1>
+      </div>
+      <label for="label"><b>Label</b></label>
+      <input type="text"
+             placeholder="Enter Label"
+             formControlName="label"
+             name="label">
+
+      <label for="start"><b>Start Time</b></label>
+      <input type="time"
+             id="start-time" #starttime
+             formControlName="start_time"
+             name="start-time" />
+
+      <label for="end"><b>End Time</b></label>
+      <input type="time"
+             id="end-time"
+             formControlName="end_time"
+             name="end-time" />
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button"
+              id="addEditBtn" #addEditBtn
+              [disabled]="!fg.valid"
+              (click)="addDetails(fg)"
+              class="addbtn"> Schedule Event </button>
+      <button type="button" (click)="hideDialogBox()" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
